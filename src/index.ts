@@ -27,7 +27,7 @@ const updateStyle = (property: any, value: string) => {
   return (node: HTMLElement) => node.style[property] = value;
 }
 
-processNodes(selectElement('#hnmain'), updateStyle('width', '50%'));
+processNodes(selectElement('#hnmain'), [updateStyle('width', '50%'), updateStyle('backgroundColor', '#fff')]);
 processNodes(selectElement('.comment'), updateStyle('fontSize', '12pt'));
 processNodes(selectElement('.hnuser'), updateStyle('fontWeight', 'bold'));
 processNodes(selectElement('.spacer'), updateStyle('height', '12px'));
