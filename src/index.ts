@@ -23,7 +23,6 @@ const processNodes = (nodeList: NodeListOf<Element | HTMLElement>, fn: NodeOpera
   }
 }
 
-// Operations
 const updateStyle = (property: any, value: string) => { 
   return (node: HTMLElement) => node.style[property] = value;
 }
@@ -33,3 +32,5 @@ processNodes(selectElement('.comment'), updateStyle('fontSize', '12pt'));
 processNodes(selectElement('.hnuser'), updateStyle('fontWeight', 'bold'));
 processNodes(selectElement('.spacer'), updateStyle('height', '12px'));
 processNodes(selectElement('.titlelink'), updateStyle('fontSize', '12pt'));
+processNodes(selectElement('.score'), updateStyle('color', '#ff6600'));
+processNodes(selectElement('.subtext'), updateStyle('fontSize', '9pt'));

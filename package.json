@@ -2,7 +2,7 @@
   "name": "nice-hn",
   "packageManager": "yarn@3.2.1",
   "scripts": {
-    "build": "esbuild src/index.ts --inject:./src/header.js --bundle --minify --sourcemap --target=chrome58,firefox57,safari11,edge16"
+    "build": "esbuild src/index.ts --inject:./src/header.js --bundle --minify --target=chrome58,firefox57,safari11,edge16"
   },
   "devDependencies": {
     "esbuild": "^0.14.39",
