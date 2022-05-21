@@ -30,6 +30,6 @@ const updateStyle = (property: any, value: string) => {
 
 processNodes(selectElement('#hnmain'), updateStyle('width', '50%'));
 processNodes(selectElement('.comment'), updateStyle('fontSize', '12pt'));
-processNodes(selectElement('.users'), updateStyle('fontWeight', 'bold'));
+processNodes(selectElement('.hnuser'), updateStyle('fontWeight', 'bold'));
 processNodes(selectElement('.spacer'), updateStyle('height', '12px'));
-processNodes(selectElement('.titlelink'), updateStyle('fontSize', '12px'));
+processNodes(selectElement('.titlelink'), updateStyle('fontSize', '12pt'));
