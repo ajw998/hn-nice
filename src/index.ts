@@ -7,30 +7,43 @@
 
 type NodeOperationFn = (node: Element | HTMLElement) => void;
 
-const selectElement = (query: string) => document.querySelectorAll(query); 
+const selectElement = (query: string) => document.querySelectorAll(query);
 
-const processNodes = (nodeList: NodeListOf<Element | HTMLElement>, fn: NodeOperationFn | NodeOperationFn[]) => {
-  if (Array.isArray(fn)) { 
-    fn.forEach((f) => { 
+const processNodes = (
+  nodeList: NodeListOf<Element | HTMLElement>,
+  fn: NodeOperationFn | NodeOperationFn[]
+) => {
+  if (Array.isArray(fn)) {
+    fn.forEach((f) => {
       for (let i = 0; i < nodeList.length; i++) {
         f(nodeList[i]);
       }
-    })
+    });
   } else {
     for (let i = 0; i < nodeList.length; i++) {
       fn(nodeList[i]);
     }
   }
-}
+};
 
-const updateStyle = (property: any, value: string) => { 
-  return (node: HTMLElement) => node.style[property] = value;
-}
+const updateStyle = (property: any, value: string) => {
+  return (node: HTMLElement) => (node.style[property] = value);
+};
 
-processNodes(selectElement('#hnmain'), [updateStyle('width', '50%'), updateStyle('backgroundColor', '#fff')]);
-processNodes(selectElement('.comment'), updateStyle('fontSize', '12pt'));
-processNodes(selectElement('.hnuser'), updateStyle('fontWeight', 'bold'));
-processNodes(selectElement('.spacer'), updateStyle('height', '12px'));
-processNodes(selectElement('.titlelink'), updateStyle('fontSize', '12pt'));
-processNodes(selectElement('.score'), updateStyle('color', '#ff6600'));
-processNodes(selectElement('.subtext'), updateStyle('fontSize', '9pt'));
+const changes = [
+  {
+    element: "#hnmain",
+    changes: [
+      updateStyle("width", "50%"),
+      updateStyle("backgroundColor", "#fff"),
+    ],
+  },
+  { element: ".comment", changes: updateStyle("fontSize", "12pt") },
+  { element: ".hnuser", changes: updateStyle("fontWeight", "bold") },
+  { element: ".spacer", changes: updateStyle("height", "12px") },
+  { element: ".titlelink", changes: updateStyle("fontSize", "12pt") },
+  { element: ".score", changes: updateStyle("color", "#ff6600") },
+  { element: ".subtext", changes: updateStyle("fontSize", "9pt") },
+];
+
+changes.forEach((c) => processNodes(selectElement(c.element), c.changes));
