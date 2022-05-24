@@ -30,6 +30,10 @@ const updateStyle = (property: any, value: string) => {
   return (node: HTMLElement) => (node.style[property] = value);
 };
 
+const addInteraction = (event, fn: (node: HTMLElement) => void) => { 
+  return (node: HTMLElement) => node.addEventListener(event, (e) => fn(node))
+}
+
 const changes = [
   {
     element: '#hnmain',
@@ -44,6 +48,11 @@ const changes = [
   { element: '.titlelink', changes: updateStyle('fontSize', '12pt') },
   { element: '.score', changes: updateStyle('color', '#ff6600') },
   { element: '.subtext', changes: updateStyle('fontSize', '9pt') },
+  // Add background colour on hover
+  { element: '.default', changes: [ 
+    addInteraction('mouseover', updateStyle('backgroundColor', '#ededed')),
+    addInteraction('mouseleave', updateStyle('backgroundColor', '#fff')),
+  ] }
 ];
 
 changes.forEach((c) => processNodes(selectElement(c.element), c.changes));
